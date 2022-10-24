@@ -83,14 +83,16 @@ def main(folder: Path):
         handle_archive(file, folder / 'archives' / 'GZ')
     for file in parser.TAR_ARCHIVES:
         handle_archive(file, folder / 'archives' / 'TAR')
-
     for folder in parser.FOLDERS[::-1]:
         handle_folder(folder)
 
-
-if __name__ == '__main__':
-    if sys.argv[1]:
+def run():
+    try:
         folder_for_scan = Path(sys.argv[1])
         print(f'Start in folder {folder_for_scan.resolve()}')
         main(folder_for_scan.resolve())
+    except:
+        print("Folder for sorting was not defined. Please enter path to folder.")
 
+if __name__ == '__main__':
+    run()
